@@ -1,0 +1,233 @@
+{
+  "greeting": "teste",
+  "loginScreen": {
+    "duty": "Plantão",
+    "nursing": "Enfermagem",
+    "passwordHint": "Digite sua senha",
+    "emailHint": "Digite seu email",
+    "btnLogin": "Entrar",
+    "forgotPassword": "Esqueci minha senha",
+    "createAccount": "Quero criar uma conta",
+    "fillAllFields": "Preencha todos os campos em vermelho!"
+  },
+  "forgotPasswordScreen": {
+    "title": "Esqueci minha senha",
+    "emailHint": "Digite seu email",
+    "send": "Enviar",
+    "errorDialogButtonOk": "OK",
+    "successMessage": "Email enviado com sucesso!"
+  },
+  "registerProfessionalScreen": {
+    "title": "Criar Conta",
+    "nameHint": "Digite seu nome completo",
+    "emailHint": "Digite seu email",
+    "passwordHint": "Digite sua senha",
+    "confirmPasswordHint": "Confirme sua senha",
+    "phoneHint": "Digite seu telefone",
+    "cpfHint": "Digite seu cpf",
+    "cityHint": "Selecione sua cidade",
+    "specialtyHint": "Selecione suas especialidades",
+    "specialtyAlreadyAdded": "Especialidade ja foi adicionada!",
+    "createAccount": "Criar minha conta",
+    "fillAllFields": "Preencha todos os campos em vermelho!",
+    "successTitle": "Sua conta foi criada com sucesso!",
+    "successMessage": "Agora você já pode logar com seu email e sua senha."
+  },
+  "homeScreen": {
+    "schedulesDone": "Plantões feitos \n neste mês.",
+    "syncButton": "Sincronizar",
+    "scheduleButton": "Plantões",
+    "logoutText": "Sair",
+    "syncSuccessTitle": "Sincronização realizada com sucesso",
+    "syncErrorMessage": "Ops, algo aconteceu de errado e não conseguimos realizar a sincronização por completo. Tente novamente mais tarde.",
+    "checkingDocumentsLoadingTitle": "Checando Documentos",
+    "checkingDocumentsLoadingMessage": "Por favor aguarde...",
+    "yes": "Sim",
+    "cancel": "Cancelar",
+    "warningLogoutMessage": "Todos os seus dados não sincronizados serão descartados ao sair.",
+    "warningLogoutTittle": "Tem certeza que deseja sair?"
+  },
+  "editPerfilScreen": {
+    "title": "Editar Perfil",
+    "nameHint": "Digite seu nome completo",
+    "emailHint": "Digite seu email",
+    "cityHint": "Selecione sua cidade",
+    "cpfHint": "Digite seu cpf",
+    "addressStreetHint": "Digite seu endereço",
+    "specialtyHint": "Selecione suas especialidades",
+    "specialtyAlreadyAdded": "Especialidade ja foi adicionada!",
+    "addressStreetNumberHint": "Digite número do seu endereço",
+    "addressZipcodeHint": "Digite seu CEP",
+    "titleLoading": "Carregando Perfil...",
+    "messageLoading": "Por favor aguarde!",
+    "addressDistrictHint": "Digite seu bairro",
+    "saveButton": "Salvar dados",
+    "successMessage": "Sua conta foi atualizada com sucesso!"
+  },
+  "scheduleScreen": {
+    "title": "Plantões",
+    "emptyComponentText": "Nenhum atendimento criado.",
+    "calendarInitial": "Data inicial",
+    "calendarEnd": "Data final",
+    "titleLoading": "Carregando Plantões...",
+    "messageLoading": "Por favor aguarde!",
+    "patientLabel": "Paciente",
+    "onDuty": "Em plantão",
+    "dutyOnThisPeriod": "  Plantões nesse período",
+    "dutyOnThisPeriodOne": "  Plantão nesse período",
+    "modalConfirm": "Confirmar",
+    "modalCancel": "Cancelar",
+    "endMustBeHigherOrEqualInitial": "A data final deve ser maior ou igual a data inicial.",
+    "initialMustBeSmallerOrEqualEnd": "A data inicial deve ser menor ou igual a data final."
+  },
+  "finishScheduleScreen": {
+    "title": "Finalizar plantão",
+    "patientName": "Nome do paciente",
+    "dutyTime": "Tempo do plantão",
+    "dutyStart": "Início do plantão",
+    "calendarInitial": "Data de início",
+    "startTime": "Hora de início",
+    "inDuty": "Em plantão",
+    "finishDuty": "Finalizar plantão",
+    "dutyFinished": "Plantão finalizado!",
+    "imageRequest": "Deseja adicionar fotos para esse atendimento?",
+    "dutyFinishError": "Ocorreu um erro ao tentar finalizar o plantão.",
+    "rememberToSynchronized": "Não se esqueça de sicronizar o seu plantão",
+    "confirmScreenMessage": "Encerramento do plantão registrado às "
+  },
+  "editScheduleScreen": {
+    "title": "Editar plantão",
+    "patientName": "Nome do paciente",
+    "dutyTime": "Tempo do plantão",
+    "dutyStart": "Início do plantão",
+    "dutyFinish": "Fim do plantão",
+    "scheduleImages": "Fotos do plantão",
+    "calendarInitial": "Data de início",
+    "startTime": "Hora de início",
+    "calendarFinish": "Data do término",
+    "finishTime": "Hora do término",
+    "syncDuty": "Sicronizar plantão",
+    "notSyncThisDuty": "Você não sicronizou esse plantão",
+    "confirmScreenMessage": "Encerramento do plantão registrado às ",
+    "syncSuccessTitle": "Sincronização realizada com sucesso",
+    "syncErrorMessage": "Ops, algo aconteceu de errado e não conseguimos realizar a sincronização por completo. Tente novamente mais tarde.",
+    "endMustBeHigherOrEqualInitial": "A data final deve ser maior ou igual a data inicial.",
+    "initialMustBeSmallerOrEqualEnd": "A data inicial deve ser menor ou igual a data final.",
+    "endTimeMustBeHigherInitial": "A hora final deve ser maior que a hora inicial.",
+    "initialTimeMustBeSmallerEnd": "A hora inicial deve ser menor que a hora final.",
+    "saveChanges": "Salvar Alterações",
+    "professionalSignature": "Assinatura do professional da saúde",
+    "caregiverSignature": "Assinature do cuidador",
+    "successMessage": "As altereções foram salvas com sucesso!"
+  },
+  "newScheduleScreen": {
+    "title": "Novo plantão",
+    "findPatient": "Buscar paciente na região",
+    "findDuty": "Buscar o plantão desejado",
+    "btnStart": "Iniciar plantão",
+    "fillFields": "Por favor preencha os campos em vermelho.",
+    "confirmScreenMessage": "Entrada do plantão registrado \n ás ",
+    "successTitle": "Bom Plantão",
+    "successMessage": "Não esqueça de finalizar o plantão \n quando encerrar seu atendimento.",
+    "titleLoading": "Criando Plantão",
+    "patientEmptyPlaceholderText": "Não existem pacientes próximos na sua região!",
+    "messageLoading": "Aguarde enquanto criamos um atendimento...",
+    "messageDutyRule":  "O horário de atendimento para este plantão comeca as {{firstTime}} horas e termina as {{secondTime}} horas, podendo ter uma variação de até {{thirdTime}} minutos.",
+    "locationRequiredToProceed": "Precisamos da sua localização para trazer os pacientes mais próximos, por favor, ative a localização e tente novamente.",
+    "dutyEmptyPlaceholderText": "Não existem plantões disponíveis.",
+    "unknowPatientAddress": "O endereço deste paciente é desconhecido, por favor entre em contato conosco reportando sobre isto! Obrigado.",
+    "mustBeNearFromPatientMessage": "Você deve estar próximo ao endereço deste paciente para selecioná-lo!"
+  },
+  "documentFirstAccessScreen": {
+    "firstGreetingMessage": "Olá {{name}}!",
+    "secondGreetingMessage": "Bem vindo ao Plantão \n Enfermagem.",
+    "startUpload": "Iniciar o envio",
+    "thirdMessage": "Para iniciar o uso do aplicativo, precisamos que você envie a foto de alguns documentos para nossa avaliação.",
+    "thirdMessageCheck": "Confira:"
+  },
+  "pendingDocumentsScreen": {
+    "firstGreetingMessage": "Olá {{name}}!",
+    "secondGreetingMessage": "Recebemos sua documentação mas …",
+    "thirdMessage": "Alguns documentos possuem pendências.",
+    "thirdMessageResend": "Precisamos que envie novamente:"
+  },
+  "waitingDocsApprovementScreen": {
+    "greeting": "Olá {{name}}! Seus documentos estão em análise.",
+    "waitOne": "Aguarde que em até ",
+    "waitTwo": "72 horas ",
+    "waitThree": "enviaremos sua liberação. ",
+    "waitFour": "Obrigado!"
+
+  },
+  "uploadDocumentsScreen": {
+    "nextText": "Avançar",
+    "sendText": "Enviar",
+    "requestDocumentMessage": "Adicione a foto do {{documentTypeName}}",
+    "selectPhotoTitle": "Selecione a foto do {{documentTypeName}}",
+    "takePhotoButtonTitle": "Tirar Foto",
+    "chooseFromLibraryButtonTitle": "Selecionar Foto",
+    "selectPhotoForRemainingDocs": "Por favor selecione uma foto para os documentos restantes",
+    "documentSentSuccessTitle": "Seus documentos foram enviados com sucesso!",
+    "documentSentErrorTitle": "Ops, algo aconteceu de errado! Tente novamente !",
+    "uploadDocumentsLoadingTitle": "Enviando Documentos",
+    "uploadDocumentsLoadingMessage": "Por favor aguarde..."
+  },
+  "uploadScheduleImageScreen": {
+    "nextText": "Avançar",
+    "requestImageMessage": "Para finalizar seu plantão, insira fotos do seu atendimento",
+    "takePhotoButtonTitle": "Tirar Foto",
+    "chooseFromLibraryButtonTitle": "Selecionar Foto",
+    "documentSentErrorTitle": "Ops, algo aconteceu de errado! Tente novamente !",
+  },
+  "scheduleSignatureScreen": {
+    "finishText": "Concluir",
+    "next": "Avançar",
+    "clean": "Limpar",
+    "professionalSignature": "A assinatura do profissional da saúde é necessária para finalizar o plantão",
+    "professionalSignatureTitle": "Assinatura do professional da saúde",
+    "caregiverSignatureTitle": "Assinatura do cuidador",
+    "signatureInfo": "Assine com o dedo no local indicado",
+    "touchText": "Toque para assinar",
+    "caregiverSignature": "Insira aqui a assinatura do cuidador",
+    "permissionTitle": "Permissão",
+    "permissionMessage": "Precisamos da permissão para salvar a assinatura.",
+    "buttonNeutral": "Pergunte mais tarde",
+    "buttonNegative": "Não",
+    "buttonPositive": "Sim",
+    "noHasPermission": "É necessário aceitar a permissão para salvar a assinatura."
+  },
+  "successScreen": {
+    "btnText": "Ok"
+  },
+  "errorScreen": {
+    "btnText": "Ok"
+  },
+  "searchScreen": {
+    "city": "Cidade",
+    "cityHint": "Digite o nome da sua cidade",
+    "specialty": "Especialidade",
+    "patient": "Paciente",
+    "duty": "Plantão"
+  },
+  "confirmScheduleScreen": {
+    "patientLabel": "Paciente: ",
+    "negativeButton": "Não",
+    "positiveButton": "Confirmar"
+  },
+  "locationService": {
+    "accessFineLocationPermissionTitle": "O aplicativo precisa acessar sua localização",
+    "accessFineLocationPermissionMessage": "Para localizarmos os pacientes mais próximos a você, precisamos da sua permissão."
+  },
+  "error": {
+    "unknown": "Ops, algo aconteceu de errado, tente novamente mais tarde!",
+    "badCredential": "Algo aconteceu de errado, verifique suas credenciais!",
+    "errorresetpasswordemailnotfound": "Email não encontrado!",
+    "errorregisterprofessionalemailalreadyused": "Email já esta sendo usado!",
+    "errorregisterprofessionalpasswordmustbeequal": "As senhas devem ser iguais!"
+  },
+  "acceptTermsComponent": {
+    "title": "Termos de Uso",
+    "buttonText": "Aceitar",
+    "message": "Para verificar os termos de uso"
+  }
+}

@@ -1,0 +1,151 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.110.0"
+
+default_platform :android
+
+desc "Upload the APK to Slack channel"
+private_lane :upload_to_slack do |options|
+  file_path = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+  file_name = file_path.gsub(/\/.*\//,"")
+  sh "echo Uploading " + file_name + " to Slack"
+  sh "curl https://slack.com/api/files.upload -F token=\"xoxa-4082770426-351422623872-353167783671-b67a7b3aa47673f75c8a0ebe658cb335\" -F channels=\"#homedical\" -F title=\"" + file_name + "\" -F filename=\"" + file_name + "\" -F file=@" + file_path
+end
+
+platform :android do
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to Crashlytics Beta"
+
+  lane :internal do
+
+    readme = File.read("./CHANGELOGANDROID.md")
+    latest_version = readme.split("\n## ").first
+    first_line = latest_version.split("\n").first
+    version_number = first_line.split(" ")[1]
+
+    release_notes = latest_version.split("\n")[1..-1].join("\n")
+
+    gradle(task: "assembleInternalRelease")
+
+    crashlytics(
+      api_token: "8382bfd3c9c59a468310fe80892b0f6e666c1c33",
+      build_secret: "7229488462f7b621187ef2046889927e5fc0ac660997a13ced995ae79f8b45d0",
+      groups: "homedical-dev",
+      notes: release_notes
+    )
+
+    slack(
+      message: ":thumbsup_parrot: Homedical Internal! :twins_parrot: Versão: " + version_number,
+      channel: "#homedical",
+      success: true,
+      payload: {
+        'Build Date' => Time.new.to_s,
+        'Built by' => 'Mister Bryan Jenkins'
+      },
+      default_payloads: [:git_branch, :git_author, :last_git_commit_message],
+    )
+
+  end
+
+  lane :staging do
+
+      readme = File.read("./CHANGELOGANDROID.md")
+      latest_version = readme.split("\n## ").first
+      first_line = latest_version.split("\n").first
+      version_number = first_line.split(" ")[1]
+
+      release_notes = latest_version.split("\n")[1..-1].join("\n")
+
+      gradle(task: "assembleStagingRelease")
+
+      crashlytics(
+        api_token: "8382bfd3c9c59a468310fe80892b0f6e666c1c33",
+        build_secret: "7229488462f7b621187ef2046889927e5fc0ac660997a13ced995ae79f8b45d0",
+        groups: "homedical-dev",
+        notes: release_notes
+      )
+
+      slack(
+        message: ":thumbsup_parrot: *Plantão Enfermagem Mobile* Flavour:`Staging`  BuildType:`Release` _Released_ ! :twins_parrot: Versão: " + version_number,
+        channel: "#homedical",
+        success: true,
+        payload: {
+          'Build Date' => Time.new.to_s,
+          'Built by' => 'Mister Bryan Jenkins'
+        },
+        default_payloads: [:git_branch, :git_author, :last_git_commit_message],
+      )
+
+    end
+
+    lane :production do
+
+      readme = File.read("./CHANGELOGANDROID.md")
+      latest_version = readme.split("\n## ").first
+      first_line = latest_version.split("\n").first
+      version_number = first_line.split(" ")[1]
+
+      release_notes = latest_version.split("\n")[1..-1].join("\n")
+
+      gradle(task: "assembleProductionRelease")
+
+      crashlytics(
+        api_token: "8382bfd3c9c59a468310fe80892b0f6e666c1c33",
+        build_secret: "7229488462f7b621187ef2046889927e5fc0ac660997a13ced995ae79f8b45d0",
+        groups: "homedical-prod",
+        notes: release_notes
+      )
+
+      slack(
+        message: ":thumbsup_parrot: *Plantão Enfermagem Mobile* Flavour:`Production`  BuildType:`Release` _Released_ ! :twins_parrot: Versão: " + version_number,
+        channel: "#homedical",
+        success: true,
+        payload: {
+          'Build Date' => Time.new.to_s,
+          'Built by' => 'Mister Bryan Jenkins'
+        },
+        default_payloads: [:git_branch, :git_author, :last_git_commit_message],
+      )
+
+      upload_to_slack()
+
+    end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    slack(
+      message: ":dibre: Erro ao gerar a versão Android do Homedical" + exception.to_s,
+      channel: "#homedical",
+      success: false,
+      default_payloads: [:lane, :git_branch, :last_git_commit]
+    )
+  end
+end

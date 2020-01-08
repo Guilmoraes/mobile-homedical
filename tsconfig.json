@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "allowJs": true,
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "jsx": "react-native",
+    "types": ["react", "react-native", "jest"],
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strict": true,                            /* Enable all strict type-checking options. */
+    "baseUrl": "types",                       /* Base directory to resolve non-absolute module names. */
+    "typeRoots": ["types"],                       /* List of folders to include type definitions from. */
+    "allowSyntheticDefaultImports": true  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+  }
+}
+
+

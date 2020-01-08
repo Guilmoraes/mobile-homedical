@@ -1,0 +1,198 @@
+min_fastlane_version("2.74.0")
+
+default_platform(:ios)
+
+platform :ios do
+  
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    ENV["FASTLANE_SESSION"] = '---\n- !ruby/object:HTTP::Cookie\n  name: DES5fa615425a97806cc6540074274c1f7ff\n  value: HSARMTKNSRVXWFlaHB2dE0S+Fx87PnWzXT8b915IEXRqpEyttIEquFLznWqLGnyrT1XY3oFHQEhDXmRmD0+7HlLNfx8be5MoDU3oMXw6YQYJBzfTlWnh+9M0yqxrLzEi4nV/zNtcxw==SRVX\n  domain: idmsa.apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 2592000\n  created_at: 2019-08-02 15:20:18.121213000 -03:00\n  accessed_at: 2019-08-05 15:05:26.911252000 -03:00\n- !ruby/object:HTTP::Cookie\n  name: myacinfo\n  value: DAWTKNV2b183f772ecde06107c979c1e2de9939611dd685dbca6237d28328ef4bc7420073423287c0db75357db9bc85c2a8b47c6e96eddaa9d7f8b710cb460fa8b2bfda20ad2edcd9e109df8ac58af7a0327b8542cd2799826915299655bc6a63d1124b8315912019f00c767a5226d1152993467347cabe53c018a7670f7443fddfe82375e850a2650256822d4bf94d5f1abd2d7868b946baca2d297a0baf595e7af8cb05c9a456ff0c10b62ec442edc087fa06d0e4626e2c548486da352c813a0ebeda284392e26399ad74649d8c25a03e56e2758d878618ab3b93c19d8ea546bb7b0d0d791924a69a2888e02293f6e5ed0fb3fa2bf5385f93b8dc9af57add9dc6a801c63366133643137313466306363326435343436366539333630333034623639396464626431326666MVRYV2\n  domain: apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: \n  created_at: 2019-08-05 15:05:28.021338000 -03:00\n  accessed_at: 2019-08-05 15:05:28.022136000 -03:00\n- !ruby/object:HTTP::Cookie\n  name: dqsid\n  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NjUwMjgzMjgsImp0aSI6InNIQ0ExSFc1Y0hkcHRYbmxsMTlmOWcifQ.9-8kCp8kTDWC0q21R0Jg0jFrQFiqc4c6dxLsuhNFnXU\n  domain: appstoreconnect.apple.com\n  for_domain: false\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 1800\n  created_at: &1 2019-08-05 15:05:28.457008000 -03:00\n  accessed_at: *1\n'
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = 'sjlg-fucw-jdqp-zdxk'
+  end
+
+  lane :internalHomedical do
+    begin
+      setup_jenkins
+
+      disable_automatic_code_signing(
+        path: "./plantaoenfermagem.xcodeproj",
+        team_id: "253VF8J9M2"
+      )
+
+      match(
+        git_url: 'https://e5b20b15d0c88fd1bf16513545a4be7c7b9e84e4@github.com/esparta-io/ios-certificates.git',
+        git_branch: 'esparta',
+        username: 'developer@esparta.io', 
+        app_identifier: 'com.plantaoenfermagem.internal',
+        force_for_new_devices: true,
+        team_id:'253VF8J9M2'
+      )
+
+      update_project_provisioning(
+        xcodeproj: "./plantaoenfermagem.xcodeproj",
+        profile: ENV["sigh_br.com.keiken.internal_development_profile-path"],
+        target_filter: "plantaoenfermagem Internal",
+        build_configuration: "Release"
+      )
+
+      gym(
+        scheme: "plantaoenfermagem Internal",
+        workspace: './plantaoenfermagem.xcworkspace',
+        export_method: 'development',
+        clean: true,
+        include_bitcode: true,
+        xcargs: "-allowProvisioningUpdates"
+      )
+
+      crashlytics(
+        api_token: "8382bfd3c9c59a468310fe80892b0f6e666c1c33",
+        build_secret: "7229488462f7b621187ef2046889927e5fc0ac660997a13ced995ae79f8b45d0",
+        groups: "plantaoenfermagem-ios-internal"
+      )
+
+      slack(
+        message: ":thumbsup_parrot: *Homedical Mobile* Platform:`Ios` Target:`Internal`  _Released_ ! :twins_parrot:",
+        channel: "#homedical",
+        success: true,
+        payload: {
+          'Build Date' => Time.new.to_s,
+          'Built by' => 'Mister Bryan Jenkins'
+        },
+        default_payloads: [:git_branch, :git_author, :last_git_commit_message],
+      )
+      
+      rescue => exception
+        on_error(exception, 'internalHomedical')
+      end
+    end
+
+    lane :stagingHomedical do
+        begin
+        setup_jenkins
+
+        disable_automatic_code_signing(
+            path: "./plantaoenfermagem.xcodeproj",
+            team_id: "253VF8J9M2"
+        )
+
+        match(
+          git_url: 'https://e5b20b15d0c88fd1bf16513545a4be7c7b9e84e4@github.com/esparta-io/ios-certificates.git',
+          git_branch: 'esparta',
+          username: 'developer@esparta.io', 
+          app_identifier: 'com.plantaoenfermagem.staging',
+          force_for_new_devices: true,
+          team_id:'253VF8J9M2'
+        )
+
+        update_project_provisioning(
+          xcodeproj: "./plantaoenfermagem.xcodeproj",
+          profile: ENV["sigh_com.plantaoenfermagem.staging_development_profile-path"],
+          target_filter: "plantaoenfermagem Staging",
+          build_configuration: "Release"
+        )
+
+        gym(
+            scheme: "plantaoenfermagem Staging",
+            workspace: './plantaoenfermagem.xcworkspace',
+            export_method: 'development',
+            clean: true,
+            include_bitcode: true,
+            xcargs: "-allowProvisioningUpdates"
+        )
+
+        crashlytics(
+          api_token: "8382bfd3c9c59a468310fe80892b0f6e666c1c33",
+          build_secret: "7229488462f7b621187ef2046889927e5fc0ac660997a13ced995ae79f8b45d0",
+          groups: "plantaoenfermagem-ios-staging"
+        )
+
+        slack(
+            message: ":thumbsup_parrot: *Homedical Mobile* Platform:`Ios` Target:`Staging`  _Released_ ! :twins_parrot:",
+            channel: "#homedical",
+            success: true,
+            payload: {
+              'Build Date' => Time.new.to_s,
+              'Built by' => 'Mister Bryan Jenkins'
+            },
+            default_payloads: [:git_branch, :git_author, :last_git_commit_message],
+        )
+      rescue => exception
+        on_error(exception, 'stagingHomedical')
+      end
+    end
+
+    lane :productionHomedical do
+      begin
+        setup_jenkins
+
+        disable_automatic_code_signing(
+            path: "./plantaoenfermagem.xcodeproj",
+            team_id: "253VF8J9M2"
+        )
+
+        match(
+          git_url: 'https://e5b20b15d0c88fd1bf16513545a4be7c7b9e84e4@github.com/esparta-io/ios-certificates.git',
+          git_branch: 'homedical',
+          username: 'developer@esparta.io', 
+          app_identifier: 'com.plantaoenfermagem',
+          type: "appstore",
+          force_for_new_devices: true,
+          team_id: "253VF8J9M2"
+        )
+
+        update_project_provisioning(
+          xcodeproj: "./plantaoenfermagem.xcodeproj",
+          profile: ENV["sigh_br.com.keiken_appstore_profile-path"],
+          target_filter: "plantaoenfermagem",
+          build_configuration: "Release"
+        )
+        
+        gym(
+            workspace: './plantaoenfermagem.xcworkspace',
+            scheme: "plantaoenfermagem",
+            export_method: 'app-store',
+            clean: true,
+            include_bitcode: false,
+            xcargs: "-allowProvisioningUpdates"
+        )
+
+        upload_to_app_store(
+          force: true,
+          submit_for_review: false,
+          skip_screenshots: true,
+          dev_portal_team_name: "Esparta Tecnologia e Inovacao Ltda ME",
+          dev_portal_team_id: "118364466",
+          team_id: "118364466",
+          team_name: "Esparta Tecnologia e Inovacao Ltda ME",
+          precheck_include_in_app_purchases: false
+        )
+
+        crashlytics(
+          api_token: "8382bfd3c9c59a468310fe80892b0f6e666c1c33",
+          build_secret: "7229488462f7b621187ef2046889927e5fc0ac660997a13ced995ae79f8b45d0",
+          groups: "keiken-ios-production"
+        )
+
+        slack(
+            message: ":thumbsup_parrot: *Homedical Mobile* Platform:`Ios` Target:`Production`  _Released_ ! :twins_parrot:",
+            channel: "#homedical",
+            success: true,
+            payload: {
+              'Build Date' => Time.new.to_s,
+              'Built by' => 'Mister Bryan Jenkins'
+            },
+            default_payloads: [:git_branch, :git_author, :last_git_commit_message],
+        )
+      rescue => exception
+        on_error(exception, 'productionHomedical')
+      end
+    end
+
+    def on_error(exception, laneName)
+      slack(
+          message: "A lane #{laneName} do ios falhou e teve a exception: #{exception}",
+          channel: "#homedical",
+          success: false
+      )
+    end
+end
