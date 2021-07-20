@@ -50,7 +50,7 @@
     "ramda": "0.25.0",
     "react": "16.8.3",
     "react-moment": "^0.7.0",
-    "react-native": "0.59.10",
+    "react-native": "0.62.3",
     "react-native-animatable": "^1.2.4",
     "react-native-config": "^0.11.7",
     "react-native-fabric": "^0.5.1",
